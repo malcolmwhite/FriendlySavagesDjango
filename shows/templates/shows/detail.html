@@ -1,0 +1,8 @@
+Date and Time: {{ show.date_and_time }}<br>
+Venue: {{ show.venue }}<br>
+Opener: {{ show.opener }}<br>
+<a href="{{ show.ticket_url }}">Tickets</a><br>
+Other info: {{ show.other_info }}<br>
+{% if show.sold_out %}
+    Sold out!<br>
+{% endif %}
