@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-
+from django.http import HttpResponse
+import urllib2
+import json
 from shows.models import ShowListing
 
 
@@ -22,3 +24,14 @@ def detail(request, show_id):
         'show': show,
     })
     return HttpResponse(template.render(context))
+
+
+def get_shows(request):
+    url = 'http://api.bandsintown.com/artists/Friendly%20Savages/events?format=json&app_id=SOUNDLY&date=all'
+    serialized_data = urllib2.urlopen(url).read()
+
+    data = json.loads(serialized_data)
+
+    html = "<html><body><pre>Data: %s.</pre></body></html>" % json.dumps(data, indent=2)
+
+    return HttpResponse(html)
