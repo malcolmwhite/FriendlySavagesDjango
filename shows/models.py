@@ -14,10 +14,10 @@ class Venue(models.Model):
 
 
 class ShowListing(models.Model):
-    id = models.IntegerField(primarykey=True)
+    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=40)
     datetime = models.DateTimeField('date and time of show')
-    formatted_datetime = models.CharField()
+    formatted_datetime = models.CharField(max_length=200)
     formatted_location = models.CharField(max_length=40)
     ticket_url= models.URLField()
     ticket_type = models.CharField(max_length=40)

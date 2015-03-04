@@ -1,8 +1,8 @@
-
 from django.template import RequestContext, loader
 from django.http import HttpResponse
 import urllib2
 import json
+from shows.serializers import ShowListingSerializer
 from shows.models import ShowListing
 
 
@@ -29,8 +29,9 @@ def get_shows(request):
     serialized_data = urllib2.urlopen(url).read()
     template = loader.get_template('shows/all_shows.html')
     show_list = json.loads(serialized_data)
+    serializer = ShowListingSerializer(show_list)
     context = RequestContext(request, {
-        'show_list': show_list,
+        'show_list': serializer
     })
 
     return HttpResponse(template.render(context))
