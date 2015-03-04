@@ -1,0 +1,9 @@
+{% if show_list %}
+    <ul>
+    {% for show in show_list %}
+        <li><a href="/shows/{{ show.id }}/">{{ show }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No shows are available.</p>
+{% endif %}
