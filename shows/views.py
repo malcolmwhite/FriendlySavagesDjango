@@ -1,9 +1,14 @@
 from django.template import RequestContext, loader
 from django.http import HttpResponse
 import urllib2
-import json
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from shows.serializers import ShowListingSerializer
 from shows.models import ShowListing
+import json
 
 
 def index(request):
@@ -25,13 +30,25 @@ def detail(request, show_id):
 
 
 def get_shows(request):
-    url = 'http://api.bandsintown.com/artists/Friendly%20Savages/events?format=json&app_id=SOUNDLY&date=all'
+    url = 'http://api.bandsintown.com/artists/Friendly%20Savages/events.json?api_version=2.0&app_id=SOUNDLY&date=all'
     serialized_data = urllib2.urlopen(url).read()
     template = loader.get_template('shows/all_shows.html')
-    show_list = json.loads(serialized_data)
-    serializer = ShowListingSerializer(show_list)
+    packed_show_list = json.loads(serialized_data)
+    unpacked_shows = [unpack_show(packed_show) for packed_show in packed_show_list]
     context = RequestContext(request, {
-        'show_list': serializer
+        'show_list': unpacked_shows
     })
 
     return HttpResponse(template.render(context))
+
+
+def unpack_show(packed_show):
+    serializer = ShowListingSerializer(data=packed_show)
+    unpacked_show = None
+    if serializer.is_valid():
+        serializer.save()
+        unpacked_show = serializer.validated_data
+    else:
+        show_id = packed_show[u"id"]
+        unpacked_show = serializer.initial_data
+    return unpacked_show

@@ -1,7 +1,7 @@
 {% if show_list %}
     <ul>
     {% for show in show_list %}
-        <li><a href="/shows/{{ show.id }}/">{{ show }}</a></li>
+        <li>{{ show.formatted_datetime }} : <a href="/shows/{{ show.id }}/">{{ show.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

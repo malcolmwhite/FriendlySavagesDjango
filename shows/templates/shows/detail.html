@@ -1,6 +1,7 @@
-Date and Time: {{ show.date_and_time }}<br>
+<h1>{{ show.title }}<br> </h1>
+Date and Time: {{ show.formatted_datetime }}<br>
 Venue: {{ show.venue }}<br>
-Opener: {{ show.opener }}<br>
+Opener: {{ show.artists }}<br>
 <a href="{{ show.ticket_url }}">Tickets</a><br>
 Other info: {{ show.other_info }}<br>
 {% if show.sold_out %}
