@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'jquery',
     'shows',
-    'home'
+    'home',
+    'FriendlySavagesDjango'
 )
 
 MIDDLEWARE_CLASSES = (
