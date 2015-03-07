@@ -3,26 +3,27 @@
 {% block content %}
 
 <!--<div class="row">-->
-    <div class="center-block col-md-6" style="text-align: center; float: none; background-color: rgba(250, 250, 250, 0.65); padding-top: 15px; border-radius: 5px">
+<div class="center-block col-md-6"
+     style="text-align: center; float: none; background-color: rgba(250, 250, 250, 0.65); padding-top: 15px; border-radius: 5px">
     {% if show_list %}
     <dl class="dl-horizontal">
-    {% for show in show_list %}
+        {% for show in show_list %}
         <dt>
             {{ show.formatted_location}}
-            </dt>
+        </dt>
         <dd>
-            {{ show.formatted_datetime}}  // {{show.venue.name }}
-        {% if show.ticket_url != none %}
-         <a href="{{ show.ticket_url }}/">  TICKETS  </a>
-        {% endif %}
-            </dd>
+            {{ show.formatted_datetime}} // {{show.venue.name }}
+            {% if show.ticket_url != none %}
+            <a href="{{ show.ticket_url }}/"> TICKETS </a>
+            {% endif %}
+        </dd>
         <br>
-    {% endfor %}
+        {% endfor %}
     </dl>
-{% else %}
+    {% else %}
     <p>No shows are available.</p>
-{% endif %}
-        </div>
+    {% endif %}
+</div>
 <!--</div>-->
- {% endblock %}
+{% endblock %}
 

@@ -1,5 +1,5 @@
-from django.forms import widgets
 from rest_framework import serializers
+
 from shows.models import Venue, ShowListing, Artist
 
 
@@ -11,11 +11,11 @@ class ShowListingSerializer(serializers.Serializer):
     datetime = serializers.DateTimeField('date and time of show')
     formatted_datetime = serializers.CharField(max_length=200)
     formatted_location = serializers.CharField(max_length=40)
-    ticket_url= serializers.URLField()
+    ticket_url = serializers.URLField()
     ticket_type = serializers.CharField(max_length=40)
     ticket_status = serializers.CharField(max_length=40)
     on_sale_datetime = serializers.DateTimeField()
-    facebook_rsvp_url= serializers.URLField()
+    facebook_rsvp_url = serializers.URLField()
     description = serializers.CharField(max_length=200)
 
     def create(self, validated_data):
@@ -42,9 +42,9 @@ class VenueSerializer(serializers.Serializer):
 
 class ArtistSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=40)
-    image_url= serializers.URLField()
-    thumb_url= serializers.URLField()
-    facebook_tour_dates_url= serializers.URLField()
+    image_url = serializers.URLField()
+    thumb_url = serializers.URLField()
+    facebook_tour_dates_url = serializers.URLField()
     mbid = serializers.CharField(max_length=40)
     upcoming_events_count = serializers.IntegerField()
 

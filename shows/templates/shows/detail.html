@@ -3,14 +3,14 @@
 
 {% block content %}
 
-<h1>{{ show.title }}<br> </h1>
-Date and Time: {{ show.formatted_datetime }}<br>
-Venue: {{ show.venue }}<br>
-Opener: {{ show.artists }}<br>
-<a href="{{ show.ticket_url }}">Tickets</a><br>
-Other info: {{ show.other_info }}<br>
-{% if show.sold_out %}
-    Sold out!<br>
-{% endif %}
+    <h1>{{ show.title }}<br></h1>
+    Date and Time: {{ show.formatted_datetime }}<br>
+    Venue: {{ show.venue }}<br>
+    Opener: {{ show.artists }}<br>
+    <a href="{{ show.ticket_url }}">Tickets</a><br>
+    Other info: {{ show.other_info }}<br>
+    {% if show.sold_out %}
+        Sold out!<br>
+    {% endif %}
 
 {% endblock %}

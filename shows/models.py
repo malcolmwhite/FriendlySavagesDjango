@@ -24,9 +24,9 @@ class Artist(models.Model):
 
 
     name = models.CharField(max_length=40)
-    image_url= models.URLField()
-    thumb_url= models.URLField()
-    facebook_tour_dates_url= models.URLField()
+    image_url = models.URLField()
+    thumb_url = models.URLField()
+    facebook_tour_dates_url = models.URLField()
     mbid = models.CharField(max_length=40)
     upcoming_events_count = models.IntegerField()
 
@@ -49,11 +49,11 @@ class ShowListing(models.Model):
     datetime = models.DateTimeField('date and time of show')
     formatted_datetime = models.CharField(max_length=200)
     formatted_location = models.CharField(max_length=40)
-    ticket_url= models.URLField(null=True)
+    ticket_url = models.URLField(null=True)
     ticket_type = models.CharField(max_length=40, null=True)
     ticket_status = models.CharField(max_length=40)
     on_sale_datetime = models.DateTimeField(null=True)
-    facebook_rsvp_url= models.URLField()
+    facebook_rsvp_url = models.URLField()
     description = models.CharField(max_length=200, null=True)
     artists = models.ForeignKey(Artist, related_name='artists', null=True)
     venue = models.ForeignKey(Venue, null=True)

@@ -1,14 +1,11 @@
+import urllib2
+import json
+
 from django.template import RequestContext, loader
 from django.http import HttpResponse
-import urllib2
-from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+
 from shows.serializers import ShowListingSerializer
 from shows.models import ShowListing
-import json
 
 
 def index(request):
