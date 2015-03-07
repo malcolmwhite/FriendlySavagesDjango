@@ -1,1 +1,36 @@
+body {
+    background: black url("inside_panel.png");
+    background-position: left center;
+    background-size: 100%;
+    background-attachment: fixed;
+}
 
+.navbar {
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+}
+
+/* Adjust Menu colors - Normal */
+.navbar .nav > li > a, .navbar .nav > li > a:first-letter {
+    color: white;
+    text-shadow: none;
+}
+
+/* Adjust Menu colors - Hover */
+.navbar .nav > li > a:hover, .navbar .nav > li > a:hover:first-letter {
+    color: lightgray;
+    text-shadow: none;
+}
+
+/* Adjust Menu colors - Active */
+.navbar .nav > li > a:active, .navbar .nav > li > a:active:first-letter,
+.navbar .nav > li.current-menu-item > a,
+.navbar .nav > li.current-menu-ancestor > a,
+.navbar .nav > li.current-menu-item > a:first-letter,
+.navbar .nav > li.current-menu-ancestor > a:first-letter {
+    color: darkgray;
+    text-shadow: none;
+}
+
+.navbar-nav.nav-justified > li {
+    float: none;
+}

@@ -19,7 +19,7 @@
 
 <header class="navbar">
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar  navbar-static-bottom">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -35,8 +35,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">LISTEN</a></li>
+        <li><a href="{% url 'home:home' %}">HOME</a></li>
         <li><a href="#">LISTEN</a></li>
         <li><a href="{% url 'shows:get_shows' %}">SHOWS</a></li>
         <li><a href="#">VIDEOS</a></li>
