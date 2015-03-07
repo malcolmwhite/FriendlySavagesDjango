@@ -1,8 +1,6 @@
 body {
-    background: black url("inside_panel.png");
-    background-position: left center;
+    background: black url("inside_panel.png") left center fixed;
     background-size: 100%;
-    background-attachment: fixed;
 }
 
 .navbar {
