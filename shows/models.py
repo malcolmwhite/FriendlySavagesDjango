@@ -9,38 +9,13 @@ class Venue(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
 
-    def __str__(self):
-        return self.name
-
-
 class Artist(models.Model):
-    def __init__(self, name, image_url, thumb_url, facebook_tour_dates_url, mbid, upcoming_events_count):
-        self.name = name
-        self.image_url = image_url
-        self.thumb_url = thumb_url
-        self.facebook_tour_dates_url = facebook_tour_dates_url
-        self.mbid = mbid
-        self.upcoming_events_count = upcoming_events_count
-
-
     name = models.CharField(max_length=40)
     image_url = models.URLField()
     thumb_url = models.URLField()
     facebook_tour_dates_url = models.URLField()
     mbid = models.CharField(max_length=40)
     upcoming_events_count = models.IntegerField()
-
-    def __unicode__(self):
-        return '%s (%s)' % (self.name, self.mbid)
-
-    def to_internal_value(self, data):
-        name = data["name"]
-        image_url = data["image_url"]
-        thumb_url = data["thumb_url"]
-        facebook_tour_dates_url = data["facebook_tour_dates_url"]
-        mbid = data["mbid"]
-        upcoming_events_count = data["upcoming_events_count"]
-        return Artist(name, image_url, thumb_url, facebook_tour_dates_url, mbid, upcoming_events_count)
 
 
 class ShowListing(models.Model):
@@ -60,6 +35,3 @@ class ShowListing(models.Model):
 
     class Meta:
         ordering = ('datetime',)
-
-    def __str__(self):
-        return self.title
