@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ album.title }}<br></h1>
+    Songs: {{ album.track_set.all }}<br>
+
+{% endblock %}

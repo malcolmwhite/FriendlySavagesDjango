@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'jquery',
     'shows',
     'home',
+    'lyrics',
     'FriendlySavagesDjango'
 )
 
