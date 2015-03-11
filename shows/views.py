@@ -4,9 +4,7 @@ import json
 from django.template import RequestContext, loader
 from django.http import HttpResponse
 
-from shows.serializers import ShowListingSerializer
-from shows.models import ShowListing
-
+from shows.models import ShowListing, Venue, Artist
 
 def index(request):
     shows_list = ShowListing.objects.order_by('-date_and_time')[:5]
@@ -40,12 +38,13 @@ def get_shows(request):
 
 
 def unpack_show(packed_show):
-    serializer = ShowListingSerializer(data=packed_show)
-    unpacked_show = None
-    if serializer.is_valid():
-        serializer.save()
-        unpacked_show = serializer.validated_data
-    else:
-        show_id = packed_show[u"id"]
-        unpacked_show = serializer.initial_data
+    try:
+        title = packed_show[u"title"]
+        datetime = packed_show[u"datetime"]
+        facebook_rsvp_url = packed_show[u"facebook_rsvp_url"]
+        unpacked_show = ShowListing.shows.get(title=title, datetime=datetime, facebook_rsvp_url=facebook_rsvp_url)
+    except ShowListing.DoesNotExist:
+        unpacked_show = ShowListing.shows.create_show(packed_show)
+        unpacked_show.save()
+
     return unpacked_show
