@@ -7,13 +7,20 @@ def content_file_name(instance, filename):
 
 
 class Album(models.Model):
-    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     artist = models.ForeignKey(Artist)
     release_date = models.DateField()
     cover_art = models.FileField(upload_to=content_file_name)
+    spotify_url = models.URLField()
+    spotify_href = models.URLField()
+    images = models.FileField(many=True)
+    album_type = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return '%s: %s' % (self.artist.name, self.title)
+        return '%s: %s' % (self.artist.name, self.name)
+
+    class Meta:
+        unique_together = ('name', 'artist', 'spotify_url', 'spotify_href')
 
 
 class Song(models.Model):
