@@ -14,7 +14,7 @@ def index(request):
 
 
 def song_detail(request, song_id):
-    song = Song.objects.get(song_id)
+    song = Song.objects.get(pk=song_id)
     template = loader.get_template('lyrics/song_detail.html')
     context = RequestContext(request, {
         'song': song,
@@ -23,7 +23,7 @@ def song_detail(request, song_id):
 
 
 def album_detail(request, album_id):
-    album = Album.objects.get(album_id)
+    album = Album.objects.get(pk=album_id)
     template = loader.get_template('lyrics/album_detail.html')
     context = RequestContext(request, {
         'album': album
