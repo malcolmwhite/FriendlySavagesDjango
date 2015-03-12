@@ -34,7 +34,7 @@ class Venue(models.Model):
 
 
 class ArtistManager(models.Manager):
-    def create_artist(self,  packed_artist):
+    def create_artist_from_bandcamp(self,  packed_artist):
         name = packed_artist[u"name"]
         image_url = packed_artist[u"image_url"]
         thumb_url = packed_artist[u"thumb_url"]
@@ -49,6 +49,18 @@ class ArtistManager(models.Manager):
             artist.save()
         return artist
 
+    def create_artist_from_spotify(self,  packed_artist):
+        name = packed_artist[u"name"]
+        image_url = packed_artist[u"images"][0][u"url"]
+        thumb_url = packed_artist[u"images"][2][u"url"]
+        try:
+            artist = self.get(name=name)
+        except Artist.DoesNotExist:
+            artist = self.create(name=name, image_url=image_url, thumb_url=thumb_url,
+                                 facebook_tour_dates_url=None, mbid=None)
+            artist.save()
+        return artist
+
 
 class Artist(models.Model):
     name = models.CharField(max_length=40)
@@ -60,7 +72,7 @@ class Artist(models.Model):
     artists = ArtistManager()
 
     class Meta:
-        unique_together = ('name', 'facebook_tour_dates_url')
+        unique_together = 'name'
 
     def __str__(self):
         return self.name
@@ -82,7 +94,7 @@ class ShowListingManager(models.Manager):
         facebook_rsvp_url = packed_show[u"facebook_rsvp_url"]
         description = packed_show[u"description"]
         packed_artists = packed_show[u"artists"]
-        artists = [Artist.artists.create_artist(artist) for artist in packed_artists]
+        artists = [Artist.artists.create_artist_from_bandcamp(artist) for artist in packed_artists]
         venue = Venue.venues.create_venue(packed_show[u"venue"])
         show = self.create(title=title, datetime=datetime, formatted_datetime=formatted_datetime,
                            formatted_location=formatted_location, ticket_url=ticket_url, ticket_type=ticket_type,
