@@ -10,34 +10,39 @@ class AlbumManager(models.Manager):
     def create_album(self,  packed_album):
         name = packed_album[u"name"]
         packed_artists = packed_album[u"artists"]
-        artists = [Artist.artists.create_artist_from_spotify(artist) for artist in packed_artists]
+        unpacked_artists = [Artist.artists.create_artist_from_spotify(packed_artist) for packed_artist in packed_artists]
         release_date = packed_album[u"release_date"]
         images = packed_album[u"images"]
+        cover, cover_thumb = self.get_cover_and_thumb(images)
         album_type = packed_album[u"album_type"]
         spotify_href = packed_album[u"href"]
         spotify_url = packed_album[u"external_urls"]["spotify"]
         try:
             album = self.get(name=name, spotify_url=spotify_url, spotify_href=spotify_href)
-        except Artist.DoesNotExist:
-            album = self.create(name=name, images=images, album_type=album_type,
-                                 spotify_href=spotify_href, spotify_url=spotify_url)
+        except Album.DoesNotExist:
+            album = self.create(name=name, cover_url=cover, cover_thumb_url=cover_thumb, album_type=album_type,
+                                spotify_href=spotify_href, spotify_url=spotify_url)
+            for artist in unpacked_artists:
+                album.artists.add(artist)
             album.save()
 
-        for artist in artists:
-            album.artists.add(artist)
-
         return album
+
+    @staticmethod
+    def get_cover_and_thumb(images):
+        return images[1], images[-1]
 
 
 class Album(models.Model):
     name = models.CharField(max_length=100)
-    primary_artist = models.ForeignKey(Artist, null=True)
     artists = models.ManyToManyField(Artist)
     release_date = models.DateField()
     spotify_url = models.URLField()
     spotify_href = models.URLField()
-    images = models.FileField(many=True)
+    cover_url = models.URLField(null=True)
+    cover_thumb_url = models.URLField(null=True)
     album_type = models.CharField(max_length=100)
+    albums = AlbumManager()
 
     def __unicode__(self):
         return '%s: %s' % (self.primary_artist.name, self.name)

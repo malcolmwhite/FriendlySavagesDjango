@@ -1,4 +1,6 @@
 from django.db import models
+import urllib2
+import json
 
 
 class VenueManager(models.Manager):
@@ -49,10 +51,14 @@ class ArtistManager(models.Manager):
             artist.save()
         return artist
 
-    def create_artist_from_spotify(self,  packed_artist):
-        name = packed_artist[u"name"]
-        image_url = packed_artist[u"images"][0][u"url"]
-        thumb_url = packed_artist[u"images"][2][u"url"]
+    def create_artist_from_spotify(self,  incomplete_packed_artist):
+        name = incomplete_packed_artist[u"name"]
+        href = incomplete_packed_artist[u"href"]
+        serialized_data = urllib2.urlopen(href).read()
+        complete_packed_artist = json.loads(serialized_data)
+        images = complete_packed_artist[u"images"]
+        image_url = images[0][u"url"]
+        thumb_url = images[-1][u"url"]
         try:
             artist = self.get(name=name)
         except Artist.DoesNotExist:
@@ -68,11 +74,10 @@ class Artist(models.Model):
     thumb_url = models.URLField()
     facebook_tour_dates_url = models.URLField(null=True)
     mbid = models.CharField(max_length=40, null=True)
-    # upcoming_events_count = models.IntegerField(null=True)
     artists = ArtistManager()
 
     class Meta:
-        unique_together = 'name'
+        unique_together = ('name',)
 
     def __str__(self):
         return self.name

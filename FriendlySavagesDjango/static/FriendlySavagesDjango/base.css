@@ -1,5 +1,5 @@
 body {
-    background: black url("inside_panel.png") left center fixed;
+    background: gray url("inside_panel.png") left center fixed;
     background-size: 100%;
 }
 

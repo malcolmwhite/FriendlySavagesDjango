@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'shows',
     'home',
     'lyrics',
+    'videos',
     'FriendlySavagesDjango'
 )
 

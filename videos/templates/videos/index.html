@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    {% if video_list %}
+        {% for video in video_list %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-m-9">
+                        <h2>{{ video.name }}</h2>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="{{ video.src_url }}"></iframe>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No videos are available.</p>
+    {% endif %}
+
+{% endblock %}

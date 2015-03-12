@@ -72,6 +72,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterUniqueTogether(
             name='artist',
-            unique_together=set([('name', 'facebook_tour_dates_url')]),
+            unique_together=set([('name',)]),
         ),
     ]
