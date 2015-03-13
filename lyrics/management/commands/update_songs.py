@@ -2,6 +2,7 @@ import urllib2
 import json
 
 from django.core.management.base import BaseCommand
+
 from lyrics.models import Song, Album
 
 
@@ -40,7 +41,10 @@ class Command(BaseCommand):
             unpacked_album = Album.albums.get(name=name, spotify_url=spotify_url, spotify_href=album_href)
         except Album.DoesNotExist:
             unpacked_album = Album.albums.create_album(packed_album)
-            unpacked_album.save()
-        packed_songs = packed_album[u"tracks"]
-        songs = [self.unpack_song(packed_song, unpacked_album) for packed_song in packed_songs]
+        packed_songs = packed_album[u"tracks"][u"items"]
+        for packed_song in packed_songs:
+            song = self.unpack_song(packed_song, unpacked_album)
+            song.save()
+            unpacked_album.songs.add(song)
+        unpacked_album.save()
         return unpacked_album

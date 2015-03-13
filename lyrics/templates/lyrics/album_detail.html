@@ -2,7 +2,9 @@
 
 {% block content %}
 
-    <h1>{{ album.title }}<br></h1>
-    Songs: {{ album.track_set.all }}<br>
+    <h1>{{ album.name }}</h1>
+    {% for song in album.songs.all %}
+        <a href="/lyrics/songs/{{ song.id }}/">{{ song }}</a><br>
+    {% endfor %}
 
 {% endblock %}

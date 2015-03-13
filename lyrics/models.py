@@ -36,7 +36,7 @@ class AlbumManager(models.Manager):
 class Album(models.Model):
     name = models.CharField(max_length=100)
     artists = models.ManyToManyField(Artist)
-    release_date = models.DateField()
+    release_date = models.DateField(null=True)
     spotify_url = models.URLField()
     spotify_href = models.URLField()
     cover_url = models.URLField(null=True)
@@ -45,21 +45,21 @@ class Album(models.Model):
     albums = AlbumManager()
 
     def __unicode__(self):
-        return '%s: %s' % (self.primary_artist.name, self.name)
+        return self.name
 
     class Meta:
         unique_together = ('name', 'spotify_url', 'spotify_href')
 
 
 class Song(models.Model):
-    album = models.ForeignKey(Album, related_name='tracks')
+    album = models.ForeignKey(Album, related_name='songs')
     number = models.IntegerField()
     title = models.CharField(max_length=100)
     lyrics = models.TextField()
     milliseconds = models.IntegerField()
 
     def __unicode__(self):
-        return '%s (%d) %s' % (self.album.title, self.number, self.title)
+        return '%s (%d) %s' % (self.album.name, self.number, self.title)
 
     class Meta:
         ordering = ('number',)
