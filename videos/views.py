@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from models import Video
 from django.template import RequestContext, loader
 from django.http import HttpResponse
+
+from models import Video
 
 
 def index(request):

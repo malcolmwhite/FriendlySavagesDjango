@@ -1,4 +1,5 @@
 from django.db import models
+
 from shows.models import Artist
 
 
@@ -7,10 +8,11 @@ def content_file_name(instance, filename):
 
 
 class AlbumManager(models.Manager):
-    def create_album(self,  packed_album):
+    def create_album(self, packed_album):
         name = packed_album[u"name"]
         packed_artists = packed_album[u"artists"]
-        unpacked_artists = [Artist.artists.create_artist_from_spotify(packed_artist) for packed_artist in packed_artists]
+        unpacked_artists = [Artist.artists.create_artist_from_spotify(packed_artist) for packed_artist in
+                            packed_artists]
         release_date = packed_album[u"release_date"]
         images = packed_album[u"images"]
         cover, cover_thumb = self.get_cover_and_thumb(images)
