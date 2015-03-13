@@ -1,21 +1,46 @@
 {% extends "base.html" %}
 
 
+{#{% block content %}#}
+{##}
+{#    {% if album_list %}#}
+{#        <ul>#}
+{#            {% for album in album_list %}#}
+{#                <li><a href="/lyrics/albums/{{ album.id }}/">{{ album }}</a></li>#}
+{#                <ul>#}
+{#                    {% for song in album.song_set %}#}
+{#                        <li><a href="/lyrics/songs/{{ song.id }}/">{{ song }}</a></li>#}
+{#                    {% endfor %}#}
+{#                </ul>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% else %}#}
+{#        <p>No songs are available.</p>#}
+{#    {% endif %}#}
+{##}
+{#{% endblock %}#}
+
+
 {% block content %}
-
-    {% if album_list %}
-        <ul>
-            {% for album in album_list %}
-                <li><a href="/lyrics/albums/{{ album.id }}/">{{ album }}</a></li>
-                <ul>
-                    {% for song in album.song_set %}
-                        <li><a href="/lyrics/songs/{{ song.id }}/">{{ song }}</a></li>
+    <div class="container-fluid">
+        <div class="center-block col-md-6">
+            <div class="well well-small">
+                <h1> LYRICS </h1>
+                <table class="table table-striped" data-show-header="false">
+                    <thead>
+                    <tr>
+                        <th data-field="name">Album Name</th>
+                        <th data-field="button">Go to album</th>
+                    </tr>
+                    </thead>
+                    {% for album in album_list %}
+                        <tr id="tr_id_{{ album.id }}">
+                            <td> {{ album.name }} </td>
+                            <td><a href="/lyrics/albums/{{ album.id }}/" class="btn">GO TO LYRICS</a></td>
+                        </tr>
                     {% endfor %}
-                </ul>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No songs are available.</p>
-    {% endif %}
-
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}

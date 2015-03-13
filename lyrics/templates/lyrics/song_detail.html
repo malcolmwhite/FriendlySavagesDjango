@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <h1>{{ song.title }}<br></h1>
-    Album: {{ song.album.name }}<br>
-    lryics: {{ song.lyrics }}<br>
-
+    <div class="container-fluid">
+        <div class="center-block col-md-6">
+            <div class="well well-small">
+                <h1>{{ song.title }}</h1>
+                {{ song.lyrics  }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

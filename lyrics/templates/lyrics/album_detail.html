@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <h1>{{ album.name }}</h1>
-    {% for song in album.songs.all %}
-        <a href="/lyrics/songs/{{ song.id }}/">{{ song }}</a><br>
-    {% endfor %}
-
+    <div class="container-fluid">
+        <div class="center-block col-md-6">
+            <div class="well well-small">
+                <h1>{{ album.name }}</h1>
+                <table class="table table-striped" data-show-header="false">
+                    <thead>
+                    <tr>
+                        <th data-field="name">Track Name</th>
+                        <th data-field="button">Go to lyrics</th>
+                    </tr>
+                    </thead>
+                    {% for song in album.songs.all %}
+                        <tr id="tr_id_{{ song.id }}">
+                            <td> {{ song.title }} </td>
+                            <td><a href="/lyrics/songs/{{ song.id }}/" class="btn">LYRICS</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
