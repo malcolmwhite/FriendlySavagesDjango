@@ -1,34 +1,45 @@
 body {
-    background: gray url("inside_panel.png") left center fixed;
+    background: black url(FS_SunFinal_TShirt.png) left center fixed;
     background-size: 100%;
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
-.navbar {
-    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
-}
-
-/* Adjust Menu colors - Normal */
-.navbar .nav > li > a, .navbar .nav > li > a:first-letter {
-    color: white;
-    text-shadow: none;
-}
-
-/* Adjust Menu colors - Hover */
-.navbar .nav > li > a:hover, .navbar .nav > li > a:hover:first-letter {
+h1{
     color: lightgray;
-    text-shadow: none;
 }
 
-/* Adjust Menu colors - Active */
-.navbar .nav > li > a:active, .navbar .nav > li > a:active:first-letter,
-.navbar .nav > li.current-menu-item > a,
-.navbar .nav > li.current-menu-ancestor > a,
-.navbar .nav > li.current-menu-item > a:first-letter,
-.navbar .nav > li.current-menu-ancestor > a:first-letter {
-    color: darkgray;
-    text-shadow: none;
+h2{
+    color: lightgray;
 }
 
-.navbar-nav.nav-justified > li {
+
+.center-block-style {
+    text-align: center;
     float: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+}
+
+.light-background a{
+    background-color:
+    rgba(250, 250, 250, 0.85);
+    color: black;
+}
+
+
+.light-background li{
+    background-color:
+    rgba(250, 250, 250, 0.85);
+    color: black;
+}
+
+.transparent-background{
+    background-color:
+    rgba(250, 250, 250, 0);
+}
+
+.square{
+    border-radius: 2px!important;
+    /*text-colo*/
 }

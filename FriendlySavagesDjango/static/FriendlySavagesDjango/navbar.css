@@ -1,0 +1,40 @@
+
+
+/* Adjust Menu colors - Normal */
+.navbar .nav > li > a, .navbar .nav > li > a:first-letter {
+    color: white;
+    text-shadow: none;
+}
+
+/* Adjust Menu colors - Hover */
+.navbar .nav > li > a:hover, .navbar .nav > li > a:hover:first-letter {
+    color: gray;
+    text-shadow: none;
+}
+
+/* Adjust Menu colors - Active */
+.navbar .nav > li > a:active, .navbar .nav > li > a:active:first-letter,
+.navbar .nav > li.current-menu-item > a,
+.navbar .nav > li.current-menu-ancestor > a,
+.navbar .nav > li.current-menu-item > a:first-letter,
+.navbar .nav > li.current-menu-ancestor > a:first-letter {
+    color: darkgray;
+    text-shadow: none;
+        float: none;
+
+}
+
+.navbar-nav.nav-justified > li {
+    float: none;
+}
+
+.modern_navbar {
+    width:100%;
+        background-color:
+            rgba(250, 250, 250, 0.1) !important;
+}
+
+.modern_navbar > li {
+        background-color:
+            rgba(250, 250, 250, 0) !important;
+}
