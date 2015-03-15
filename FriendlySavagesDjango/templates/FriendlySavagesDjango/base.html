@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 
-<html>
+<html lang="en">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
+{#    <script src='{% static 'stylesheets/main.css' %} '></script>#}
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/main.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'FriendlySavagesDjango/base.css' %}"/>
+
 </head>
 <body>
 
@@ -25,10 +25,18 @@
     {% block content %}{% endblock %}
 </div>
 
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src='{% static 'jquery/src/jquery.js' %}'></script>
+<script src='{% static 'foundation/js/foundation/foundation.clearing.js' %} '></script>
+
+
+<script src='{% static "foundation/js/vendor/jquery.js" %}'></script>
+<script src='{% static "foundation/js/foundation.min.js" %}'></script>
+<script src='{% static "foundation/js/foundation/foundation.accordion.js" %}'></script>
+
+  <script>
+    $(document).foundation();
+  </script>
+
 
 </body>
 </html>

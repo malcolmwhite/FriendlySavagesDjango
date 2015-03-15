@@ -1,47 +1,25 @@
-{#<!DOCTYPE html>#}
-{#<html>#}
-{#<head lang="en">#}
-{#    <meta charset="UTF-8">#}
-{#    <title></title>#}
-{#</head>#}
-{#<body>#}
-{##}
-{#</body>#}
-{#</html>#}
-
-{% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'FriendlySavagesDjango/base.css' %}"/>
-<link rel="stylesheet" type="text/css" href="{% static 'FriendlySavagesDjango/navbar.css' %}"/>
-
-
 {% block navbar %}
 
-        <nav class="navbar navbar-inverse "><!-- I need to override navbar-inverse but don't know how... -->
-            <div class="container-fluid ">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#modern_navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{% url 'home:home' %}">FRIENDLY SAVAGES</a>
-                </div>
 
-                <div class="collapse navbar-collapse modern_navbar" id="#modern_navbar">
-                    <ul class="nav navbar-nav">
-                        <li><a href="{% url 'home:home' %}">HOME</a></li>
-                        <li><a href="#">LISTEN</a></li>
-                        <li><a href="{% url 'lyrics:index' %}">LYRICS</a></li>
-                        <li><a href="{% url 'shows:get_shows' %}">SHOWS</a></li>
-                        <li><a href="{% url 'videos:index' %}">VIDEOS</a></li>
-                        <li><a href="#">ABOUT THE BAND</a></li>
-                        <li><a href="#">CONTACT</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">My Site</a></h1>
+            </li>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+            <ul class="left">
+                <li><a href="{% url 'home:home' %}">HOME</a></li>
+                <li><a href="#">LISTEN</a></li>
+                <li><a href="{% url 'lyrics:index' %}">LYRICS</a></li>
+                <li><a href="{% url 'shows:get_shows' %}">SHOWS</a></li>
+                <li><a href="{% url 'videos:index' %}">VIDEOS</a></li>
+                <li><a href="#">ABOUT THE BAND</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </section>
+    </nav>
 {% endblock %}

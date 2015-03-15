@@ -3,15 +3,14 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="center-block col-md-6 center-block-style transparent-background">
+        <div class="row">
+        <div class="large-12 columns">
                 <h1> LYRICS </h1>
-                <ul class="list-group light-background">
-                    {% for album in album_list %}
-                            <a href="/lyrics/albums/{{ album.id }}/" class="list-group-item square">
-                                {{ album.name }}
-                            </a>
-                    {% endfor %}
-                </ul>
+            <br>
+                {% for album in album_list %}
+                        <a href="/lyrics/albums/{{ album.id }}/" class ="button expand"> {{ album.name }} </a>
+                {% endfor %}
+        </div>
         </div>
     </div>
 {% endblock %}

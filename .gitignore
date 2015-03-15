@@ -1,6 +1,6 @@
 .idea/*
 *.pyc
-*.ids
-*.pyc
-*.gif
 *.png
+static/*
+node_modules/*
+bower_components/*

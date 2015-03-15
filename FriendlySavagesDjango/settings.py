@@ -13,6 +13,11 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# PROJECT_ROOT = os.path.abspath(
+#     os.path.join(os.path.dirname(__file__), ".."),
+# )
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -23,7 +28,7 @@ SECRET_KEY = '7d2_$e(@*@-f_bcaiu_*o1ua98var#t2_&iv15q$_mz&3b(za2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -37,7 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'jquery',
+    'djangobower',
+    'compressor',
     'shows',
     'home',
     'lyrics',
@@ -82,11 +88,37 @@ USE_L10N = True
 
 USE_TZ = True
 
+COMPRESS_ENABLED = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = (
+    'compressor.finders.CompressorFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'foundation',
+)
+
+
+
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'FriendlySavagesDjango\\templates\\FriendlySavagesDjango'),
