@@ -5,10 +5,8 @@ from lyrics.models import Album, Song
 
 
 def index(request):
-    album_list = Album.albums.all()
     template = loader.get_template('lyrics/index.html')
     context = RequestContext(request, {
-        'album_list': album_list,
     })
     return HttpResponse(template.render(context))
 
@@ -26,7 +24,7 @@ def album_detail(request, album_id):
     album = Album.albums.get(pk=album_id)
     template = loader.get_template('lyrics/album_detail.html')
     context = RequestContext(request, {
-        'album': album
+        'album': album,
     })
 
     return HttpResponse(template.render(context))
