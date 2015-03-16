@@ -48,7 +48,8 @@ INSTALLED_APPS = (
     'home',
     'lyrics',
     'videos',
-    'FriendlySavagesDjango'
+    'FriendlySavagesDjango',
+    'core'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,7 +115,6 @@ TEMPLATE_LOADERS = (
 
 BOWER_INSTALLED_APPS = (
     'jquery',
-    'foundation',
 )
 
 

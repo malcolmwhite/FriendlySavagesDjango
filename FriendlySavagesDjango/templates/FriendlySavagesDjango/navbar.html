@@ -1,6 +1,4 @@
 {% block navbar %}
-
-
     <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
             <li class="name">
@@ -15,14 +13,13 @@
                 <li><a href="{% url 'home:home' %}">HOME</a></li>
                 <li><a href="#">LISTEN</a></li>
                 <li class="has-dropdown">
-                    <a href="{% url 'lyrics:index' %}">LYRICS</a>
+                    <a href="{% url 'lyrics:album_list' %}">LYRICS</a>
                     <ul class="dropdown">
                        {% for album in album_list %}
                            <li><a href="{% url 'lyrics:album_detail' album.id %}">{{ album.name }}</a></li>
                        {% endfor %}
                     </ul>
                 </li>
-                <li><a href="{% url 'lyrics:index' %}">LYRICS</a></li>
                 <li><a href="{% url 'shows:get_shows' %}">SHOWS</a></li>
                 <li><a href="{% url 'videos:index' %}">VIDEOS</a></li>
                 <li><a href="#">ABOUT THE BAND</a></li>

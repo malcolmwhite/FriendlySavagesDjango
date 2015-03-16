@@ -1,9 +1,8 @@
 from django.template import RequestContext, loader
 from django.http import HttpResponse
+from core.views import generic_view
 
 
-def home(request):
-    template = loader.get_template('home/index.html')
-    context = RequestContext(request, {
-    })
-    return HttpResponse(template.render(context))
+def home(request, **data):
+    return apply(generic_view, (request,), data)
+

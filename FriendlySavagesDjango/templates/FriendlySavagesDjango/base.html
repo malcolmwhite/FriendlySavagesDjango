@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-{% load staticfiles %}
 
 <html lang="en">
 <head lang="en">
+    {% load staticfiles %}
     <meta charset="UTF-8">
     <title></title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
-{#    <script src='{% static 'stylesheets/main.css' %} '></script>#}
+        <script src='{% static 'stylesheets/main.css' %} '></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/main.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'FriendlySavagesDjango/base.css' %}"/>
 
+        <script src='{% static "foundation/js/vendor/modernizr.js" %}'></script>
+
 </head>
+
+
 <body>
 
 <div id="all_navbar">
@@ -21,22 +25,77 @@
     {% endblock %}
 </div>
 
+
 <div id="content">
     {% block content %}{% endblock %}
 </div>
 
-<script type="text/javascript" src='{% static 'jquery/src/jquery.js' %}'></script>
-<script src='{% static 'foundation/js/foundation/foundation.clearing.js' %} '></script>
+{#<footer style="position:fixed; bottom:0"><div class='embed-container'>#}
+{##}
+{#    <iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A4tjNIbJuVc8GxqBXAqGZAD"#}
+{#            width="340" height="80" frameborder="0" allowtransparency="true">#}
+{#    </iframe>#}
+{##}
+{#</div></footer>#}
 
 
-<script src='{% static "foundation/js/vendor/jquery.js" %}'></script>
-<script src='{% static "foundation/js/foundation.min.js" %}'></script>
-<script src='{% static "foundation/js/foundation/foundation.accordion.js" %}'></script>
 
-  <script>
+
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+    <script src='{% static "FriendlySavagesDjango/main_page.js" %}'></script>
+    <script src="//balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script>
+    <script src='{% static "foundation/js/vendor/fastclick.js" %}'></script>
+    <script src='{% static "foundation/js/foundation.min.js" %}'></script>
+
+
+
+
+<script>
     $(document).foundation();
-  </script>
+</script>
 
+{% block extrascript %}
+    <script>
+        $(function () {
+
+            // Prepare
+            var History = window.History; // Note: We are using a capital H instead of a lower h
+            if (!History.enabled) {
+                // History.js is disabled for this browser.
+                // This is because we can optionally choose to support HTML4 browsers or not.
+                return false;
+            }
+
+            // Bind to StateChange Event
+            History.Adapter.bind(window, 'statechange', function () {
+                var State = History.getState();
+                if (State) {
+                    $('#content').load(State.url);
+                }
+            });
+
+            ajaxifyLinks();
+        });
+    </script>
+    <script>
+    function respondify(){
+  $('iframe[src*="embed.spotify.com"]').each( function() {
+    $(this).css('width',$(this).parent(1).css('width'));
+    $(this).attr('src',$(this).attr('src'));
+  });
+}
+
+$(document).ready(function(){
+  respondify();
+});
+$(window).resize(function() {
+  respondify();
+});
+    </script>
+{% endblock %}
 
 </body>
 </html>

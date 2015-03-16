@@ -1,0 +1,21 @@
+{% extends base_template %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row">
+        <div class="large-12 columns">
+                <h1> LYRICS </h1>
+            <br>
+                {% for album in albums %}
+                        <a href="/lyrics/albums/{{ album.id }}/" class ="button expand"> {{ album.name }} </a>
+                {% endfor %}
+        </div>
+        </div>
+    </div>
+
+    <script>
+    ajaxifyLinks();
+    setActiveLink('{{ active_link }}');
+</script>
+{% endblock %}

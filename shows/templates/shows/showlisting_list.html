@@ -1,0 +1,24 @@
+{% extends base_template %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="center-block col-md-6 center-block-style transparent-background">
+                <h1> SHOWS </h1>
+                <ul class="list-group light-background">
+                    {% for show in shows %}
+                        {% if show.ticket_url != none %}
+                            <a href="{{ show.ticket_url }}/" class="list-group-item square">
+                                <b>{{ show.formatted_location}}</b> // {{ show.formatted_datetime}} // {{show.venue.name }}
+                            </a>
+                        {% else %}
+                            <li class="list-group-item square ">
+                                <b>{{ show.formatted_location}}</b> // {{ show.formatted_datetime}} // {{show.venue.name }}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+
+{% endblock %}
