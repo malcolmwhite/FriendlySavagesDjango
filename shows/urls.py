@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, url
 
-from shows import views
 from shows.models import ShowListing
 from core.views import generic_view
 
@@ -13,8 +12,6 @@ show_template_info = {
 
 urlpatterns = patterns('',
                        # ex: /shows/
-                       # ex: /shows/5/
-                       url(r'^(?P<show_id>\d+)/$', views.detail, name='detail'),
                        url(r'^get_shows/$', generic_view, show_template_info),
                        url(r'^$', generic_view, show_template_info, name="get_shows"),
                        )

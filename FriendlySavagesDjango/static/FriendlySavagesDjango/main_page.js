@@ -8,7 +8,7 @@ function ajaxifyLinks(){
 }
  
 function setActiveLink(selector){
-    $('#menu a').removeClass('active');
+    $('#menu').find('a').removeClass('active');
     if (selector){
         $(selector).addClass('active');
     }

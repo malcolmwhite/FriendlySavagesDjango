@@ -23,5 +23,5 @@ urlpatterns = patterns('',
                        url(r'^$', generic_view, album_template_info, name='album_list'),
                        # ex: /lyrics/1/
                        url(r'^albums/(?P<album_id>\d+)/$', views.album_detail, album_detail_template_info, name='album_detail'),
-                       url(r'^songs/(?P<song_id>\d+)/$', views.song_detail, name='song_detail'),
+                       # url(r'^songs/(?P<song_id>\d+)/$', views.song_detail, name='song_detail'),
                        )

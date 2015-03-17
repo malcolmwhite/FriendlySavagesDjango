@@ -1,5 +1,5 @@
 {% block navbar %}
-    <nav class="top-bar" data-topbar role="navigation">
+    <nav class="top-bar" data-topbar role="navigation" id="menu">
         <ul class="title-area">
             <li class="name">
                 <h1><a href="#">My Site</a></h1>
@@ -20,8 +20,8 @@
                        {% endfor %}
                     </ul>
                 </li>
-                <li><a href="{% url 'shows:get_shows' %}">SHOWS</a></li>
-                <li><a href="{% url 'videos:index' %}">VIDEOS</a></li>
+                <li><a href="{% url 'shows:get_shows' %}" id="shows">SHOWS</a></li>
+                <li><a href="{% url 'videos:get_videos' %}" id="videos">VIDEOS</a></li>
                 <li><a href="#">ABOUT THE BAND</a></li>
                 <li><a href="#">CONTACT</a></li>
             </ul>
