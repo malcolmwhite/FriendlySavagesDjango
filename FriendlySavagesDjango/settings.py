@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'lyrics',
     'videos',
     'FriendlySavagesDjango',
-    'core'
+    'core',
+    'static.soundManager'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,7 +122,6 @@ BOWER_INSTALLED_APPS = (
 
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'FriendlySavagesDjango\\templates\\FriendlySavagesDjango'),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
