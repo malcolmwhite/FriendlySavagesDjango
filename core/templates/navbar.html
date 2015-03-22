@@ -1,0 +1,30 @@
+{% block navbar %}
+    <nav class="top-bar" data-topbar role="navigation" id="menu">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">My Site</a></h1>
+            </li>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+            <ul class="left">
+                <li><a href="{% url 'home:home' %}">HOME</a></li>
+                <li><a href="#">LISTEN</a></li>
+                <li class="has-dropdown">
+                    <a href="{% url 'lyrics:album_list' %}" id="lyrics">LYRICS</a>
+                    <ul class="dropdown">
+                       {% for album in album_list %}
+                           <li><a href="{% url 'lyrics:album_detail' album.id %}" id="lyrics">{{ album.name }}</a></li>
+                       {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{% url 'shows:get_shows' %}" id="shows">SHOWS</a></li>
+                <li><a href="{% url 'videos:get_videos' %}" id="videos">VIDEOS</a></li>
+                <li><a href="#">ABOUT THE BAND</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </section>
+    </nav>
+{% endblock %}
