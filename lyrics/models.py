@@ -46,6 +46,10 @@ class Album(models.Model):
     album_type = models.CharField(max_length=100)
     albums = AlbumManager()
 
+    @property
+    def first_artist(self):
+        return self.artists.all()[0]
+
     def __unicode__(self):
         return self.name
 
@@ -59,6 +63,11 @@ class Song(models.Model):
     title = models.CharField(max_length=100)
     lyrics = models.TextField()
     milliseconds = models.IntegerField()
+    stream_href = models.URLField(null=True)
+    in_soundbar_playlist = models.BooleanField(default=True)
+
+    def first_artist(self):
+        return self.album.first_artist
 
     def __unicode__(self):
         return '%s (%d) %s' % (self.album.name, self.number, self.title)

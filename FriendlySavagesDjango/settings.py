@@ -131,5 +131,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         "django.core.context_processors.media",
         "django.core.context_processors.static",
         "django.contrib.messages.context_processors.messages",
-        "context_processors.album_list"
+        "core.context_processors.album_list",
+        "core.context_processors.soundbar_playlist"
     )

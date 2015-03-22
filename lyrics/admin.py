@@ -10,5 +10,6 @@ class AlbumAdmin(admin.ModelAdmin):
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
+    list_filter = ('album', 'in_soundbar_playlist')
     pass
 

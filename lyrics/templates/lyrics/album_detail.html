@@ -12,7 +12,7 @@
                         <a href="#panel{{ song.id }}"> {{ song.title }} </a>
 
                         <div id="panel{{ song.id }}" class="content">
-                            Lyrics be here.
+                            {{ song.lyrics|linebreaks  }}
                         </div>
                     </li>
                 {% endfor %}
