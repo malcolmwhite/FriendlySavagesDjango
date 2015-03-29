@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     'videos',
     'FriendlySavagesDjango',
     'core',
-    'static.soundManager'
+    'core.static.soundManager'
 )
 
 MIDDLEWARE_CLASSES = (

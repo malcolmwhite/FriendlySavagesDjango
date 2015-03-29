@@ -1,7 +1,7 @@
 {% block sound_bar %}
 
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'soundManager/demo/bar-ui/css/bar-ui.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'soundManager/bar-ui/css/bar-ui.css' %}"/>
 
 
     <div class="sm2-bar-ui full-width fixed flat">
@@ -90,16 +90,16 @@
 
             <div class="sm2-playlist-wrapper">
                 <ul class="sm2-playlist-bd">
+
                     {% for song in soundbar_playlist %}
-                        {% if forloop.first %}
-                            <li class="selected">
-                        {% else %}
-                            <li>
-                        {% endif %}
-                    <a href="{{ song.stream_href }}">
+
+                    <li><a type="audio/mp3" class="sm2_button" href="{{ song.stream_href }}">
                         <b>{{ song.first_artist }}</b> - {{ song.title }}
                     </a></li>
+
                     {% endfor %}
+
+
                 </ul>
             </div>
 
@@ -107,12 +107,9 @@
 
     </div>
 
-    <script src='//connect.soundcloud.com/sdk-2.0.0.js'></script>
+    <script src='//connect.soundcloud.com/sdk.js'></script>
     <script src='{% static "soundManager/script/soundmanager2.js" %}'></script>
-    <script src='{% static "soundManager/demo/bar-ui/script/bar-ui.js" %}'></script>
+    <script src='{% static "soundManager/bar-ui/script/bar-ui.js" %}'></script>
 
-    <script>
-        $(document).foundation('reflow');
-    </script>
 
 {% endblock %}
