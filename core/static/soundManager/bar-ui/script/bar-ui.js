@@ -1057,6 +1057,7 @@
 
 	        href = target.href;
 
+              // Changed from canPlayURL to canPlayLink
 	        if (soundManager.canPlayLink(target)) {
 
               // not excluded
